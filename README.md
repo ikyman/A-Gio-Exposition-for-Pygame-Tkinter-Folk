@@ -5,6 +5,7 @@ An Tutorial/Overview of Python's GUI Libraries, and a Compare &amp; Contrast wit
 Henceforth, our program, the one which will be discussed and trilingually translated, is as thus:
 You are greeted with a screen, with a shape and a button:
 <img width="410" height="332" alt="image" src="https://github.com/user-attachments/assets/60ba38cf-9496-4c94-b4b5-95b416bf8297" />
+
 Using WASD Moves the shape. Simple enough.
 
 Your eyes may focus upon the button: If you click that, what doe you get? A second button. 
@@ -23,12 +24,9 @@ More mundane matters, the structure of this tutorial is focused on a core on Tki
 
 Judgement on either field would also be Top-Notch.
 
-# A Great Rehashing
-# More writings on the app
-Do you like reading? Do you like My Writing? Well, you're in luck! I will write more words about this seemingly simple app.
-Don't like reading?  Don't like My Writing? Well, you're in luck! I lied in the above sentance. Instead of paragraphs of text, I'll dump a bundle of MS Paint pictures & call it a day.
+Lastly, if public is clamoring for it, I will add a React Section to this tutorial.
 
-# Tkinter
+# A Great Rehashing: Tkinter
 
 # New Toys
 # Pygame
