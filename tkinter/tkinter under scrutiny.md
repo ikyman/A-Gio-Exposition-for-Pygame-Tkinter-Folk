@@ -18,9 +18,22 @@ An example of a program with text-based interation:
 
 You might spot one minor pecadillo with this program: what if I want to move the shape twice?
 I can't due to the structure of the program:
+<img width="313" height="400" alt="image" src="https://github.com/user-attachments/assets/8683d16e-1c09-4825-8939-56a2f3c2c8ce" />
+
+This can be fixed by running the inner "move shape or add button" section as long as the user wants. I.E. by using a while loop.
+The program now looks like this:
+<img width="490" height="326" alt="image" src="https://github.com/user-attachments/assets/4a771d8a-eec3-4741-bb67-be1364a9a1a8" />
+Alternatively and oversimplified: 
+<img width="748" height="487" alt="image" src="https://github.com/user-attachments/assets/ec91b1c3-691f-45d7-a494-9e79cc41607e" />
 
 
+Now the entire program is a loop: it only exits when I input "e"
+`
+[do you wish to add a (b)utton, (m)ove the shape, or (e)xit? > e 
+==Program Exited==
+`
+Great! I can move the shape or add buttons to my heart's content, exactly the behavior we want from our experimental GUI program.
 
-
+ On second thoughts, it's not great. "Out of sight, out of mind". I do not see this shape. I don't see any buttons. Fake!
 
 # mainloop()
