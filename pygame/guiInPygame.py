@@ -4,7 +4,6 @@ import copy
 
 from UIElements.front_end_button import FrontEndButton
 from UIElements.sub_correcting_surface import SubCorrectingSurface
-from UIElements.posting_rail import PostingRail
 
 pygame.font.init()
 FONT_SIZE = 20
