@@ -37,3 +37,9 @@ Great! I can move the shape or add buttons to my heart's content, exactly the be
  On second thoughts, it's not great. "Out of sight, out of mind". I do not see this shape. I don't see any buttons. Fake!
 
 # mainloop()
+I'm going to start off at the way, way bottom. We've already instantiated the tkinter Application Root with tk = Tk(). 
+The real action, however, starts with tk.mainloop()! 
+Recall the earlier commentary on the basic structure of a text-based program. The loop. With only tk.mainloop(), we reconstruct that loopy pattern!
+
+<img width="750" height="476" alt="image" src="https://github.com/user-attachments/assets/b0873443-dc45-449c-8413-b481b2ebc369" />
+
