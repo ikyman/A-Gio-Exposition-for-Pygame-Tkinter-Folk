@@ -73,7 +73,7 @@ In our case, we will be saving the polygon's id. When our shape is supposed to m
 But now is later. When and how will we move the shape? Your eyes may be drawn to the bind_all emporium. This is a cruicial step: it binds a select user action event to a particular function.
 In other words, it bridges the user input with the doing the doings:
 
-https://github.com/user-attachments/assets/1910bb9e-785c-4204-b2d1-606e699de6f7
+https://github.com/user-attachments/assets/1b322bfa-a5cb-4a52-b565-1e327a38d9d7
 
 A picture is worth a thousand words, and the above video has 25 fps. I think enough has been said about bind_all.
 
