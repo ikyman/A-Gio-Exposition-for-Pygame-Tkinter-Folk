@@ -43,3 +43,30 @@ Recall the earlier commentary on the basic structure of a text-based program. Th
 
 <img width="750" height="476" alt="image" src="https://github.com/user-attachments/assets/b0873443-dc45-449c-8413-b481b2ebc369" />
 
+One caviat: if you're comparing this loop above with the loop from the text-based application, there's one small thing missing: By itself, mainloop() doesn't translate user input into actions. 
+I would love to explain how input begats action. But before I do so, I would like even more to ramble and philosophize over the nature of the dummy program.
+
+# One program? No, two!
+Clicking a button has no effect on any shape, and moving a shape has no effect on any button.
+This program is not one, but two. 
+First, we have a movable shape on a canvas.
+Secondly, we have the buttons which make more buttons. 
+
+Each of these can be discuissed seperately, which I will do shortly. 
+First, let me brag about my excellent S(olid) skills. I seperated the shape-moving and button-clicking into seperate modules. If I ever need to change either of them in the future, I can rest easy knowing that changes made inone class won't obliterate the other class.
+
+# I move the shape!
+A shape that moves via arrow-keys. 
+
+First of all, we got to make the canvas the shape is on, and the shape itself. These tasks are done before the mainloop, and so shall not affect our nice little cycle.
+We shall do so by instantiating a Canvas object, packing it, and drawing the shape. The first two tasks are done in the if name == "main" conditional, the latter is done via the shape's constructor.
+
+__Canvas__ : The name gives the game away, I say. Much like a real-life canvas, a tkinter canvas is needed if you ever need to draw anything. Polygons and circles are too chaotic to handle either packing or gridding.
+__Packing__ :  "Built-in the box" widgets like buttons (which we'll get to later) and the canvas need to be packed before use. This tells tkinter where each widget is placed in relation to existing and future widgets.
+You can fine-tune where exactly a newly-packed widget is placed via both the side and anchor properties. I, being a professional jiggled these settings around untill my widgets were in the right position.
+I recon that's not a particularly satisfying answer, and the Tkinter people agree! Hence, they created the grid() function. Like pack(), grid() places widgets on the screen. grid, being grid-based and objective, is easier to use than the Relatist pack(). More readong on grid() vs pack() can be found here: https://tkdocs.com/tutorial/concepts.html#geometry
+__Shape Drawing__ : Much like how a canvas is needed to draw items, it would be useless to have a canvas and be unable to draw anything on it. Canvases can draw many items, such as polygons, rectangles, text, and images. Each of these drawn objects can be refered to by it's ID. 
+In our case, we will be saving the polygon's id. When our shape is supposed to move, we can use canvas.move in conjunction with the polygon's ID to make the polygon move.
+
+But now is later. When and how will we move the shape? Your eyes may be drawn to the bind_all emporuim.
+
