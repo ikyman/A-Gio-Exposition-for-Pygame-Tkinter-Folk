@@ -41,7 +41,7 @@ I'm going to start off at the way, way bottom. We've already instantiated the tk
 The real action, however, starts with tk.mainloop()! 
 Recall the earlier commentary on the basic structure of a text-based program. The loop. With only tk.mainloop(), we reconstruct that loopy pattern!
 
-<img width="750" height="476" alt="image" src="https://github.com/user-attachments/assets/b0873443-dc45-449c-8413-b481b2ebc369" />
+<img width="750" height="487" alt="image" src="https://github.com/user-attachments/assets/33c9a6be-157a-4bf4-a632-dbd7901b7cc5" />
 
 One caviat: if you're comparing this loop above with the loop from the text-based application, there's one small thing missing: By itself, mainloop() doesn't translate user input into actions. 
 I would love to explain how input begats action. But before I do so, I would like even more to ramble and philosophize over the nature of the dummy program.
@@ -53,7 +53,7 @@ First, we have a movable shape on a canvas.
 Secondly, we have the buttons which make more buttons. 
 
 Each of these can be discuissed seperately, which I will do shortly. 
-First, let me brag about my excellent S(olid) skills. I seperated the shape-moving and button-clicking into seperate modules. If I ever need to change either of them in the future, I can rest easy knowing that changes made inone class won't obliterate the other class.
+One moment! I will brag about my excellent S(olid) skills. I seperated the shape-moving and button-clicking into seperate modules. If I ever need to change either of them in the future, I can rest easy knowing that changes made in one class won't obliterate the other class. Extremely smart, that's what I am.
 
 # I move the shape!
 A shape that moves via arrow-keys. 
@@ -62,11 +62,21 @@ First of all, we got to make the canvas the shape is on, and the shape itself. T
 We shall do so by instantiating a Canvas object, packing it, and drawing the shape. The first two tasks are done in the if name == "main" conditional, the latter is done via the shape's constructor.
 
 __Canvas__ : The name gives the game away, I say. Much like a real-life canvas, a tkinter canvas is needed if you ever need to draw anything. Polygons and circles are too chaotic to handle either packing or gridding.
+
 __Packing__ :  "Built-in the box" widgets like buttons (which we'll get to later) and the canvas need to be packed before use. This tells tkinter where each widget is placed in relation to existing and future widgets.
 You can fine-tune where exactly a newly-packed widget is placed via both the side and anchor properties. I, being a professional jiggled these settings around untill my widgets were in the right position.
 I recon that's not a particularly satisfying answer, and the Tkinter people agree! Hence, they created the grid() function. Like pack(), grid() places widgets on the screen. grid, being grid-based and objective, is easier to use than the Relatist pack(). More readong on grid() vs pack() can be found here: https://tkdocs.com/tutorial/concepts.html#geometry
-__Shape Drawing__ : Much like how a canvas is needed to draw items, it would be useless to have a canvas and be unable to draw anything on it. Canvases can draw many items, such as polygons, rectangles, text, and images. Each of these drawn objects can be refered to by it's ID. 
-In our case, we will be saving the polygon's id. When our shape is supposed to move, we can use canvas.move in conjunction with the polygon's ID to make the polygon move.
 
-But now is later. When and how will we move the shape? Your eyes may be drawn to the bind_all emporuim.
+__Shape Drawing__ : Much like how a canvas is needed to draw items, it would be useless to have a canvas and be unable to draw anything on it. Canvases can draw many items, such as polygons, rectangles, text, and images. Each of these drawn objects can be refered to by it's ID. 
+In our case, we will be saving the polygon's id. When our shape is supposed to move, we can use canvas.move in conjunction with the polygon's ID to make the polygon move. Each direction has their own function.
+
+But now is later. When and how will we move the shape? Your eyes may be drawn to the bind_all emporium. This is a cruicial step: it binds a select user action event to a particular function.
+In other words, it bridges the user input with the doing the doings:
+
+https://github.com/user-attachments/assets/1910bb9e-785c-4204-b2d1-606e699de6f7
+
+A picture is worth a thousand words, and the above video has 25 fps. I think enough has been said about bind_all.
+
+
+
 
