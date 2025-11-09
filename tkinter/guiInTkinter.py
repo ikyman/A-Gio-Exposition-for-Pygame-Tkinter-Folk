@@ -9,10 +9,10 @@ class MovableShape():
   self.canvas = canvas
   self.shape = self.canvas.create_polygon(shapePoints, fill = fillColour, outline=borderColour, width = borderWeight)
   self.speed = speed
-  canvas.bind_all("<KeyPress-Up>", self.moveUp)  
-  canvas.bind_all("<KeyPress-Right>", self.moveRight)
-  canvas.bind_all("<KeyPress-Down>", self.moveDown)
-  canvas.bind_all("<KeyPress-Left>", self.moveLeft)  
+  self.canvas.bind_all("<KeyPress-Up>", self.moveUp)  
+  self.canvas.bind_all("<KeyPress-Right>", self.moveRight)
+  self.canvas.bind_all("<KeyPress-Down>", self.moveDown)
+  self.canvas.bind_all("<KeyPress-Left>", self.moveLeft)  
 
  def moveUp(self, event):
   self.canvas.move(self.shape, 0, -self.speed) 
@@ -50,8 +50,8 @@ if __name__ == "__main__":
                       )
  
  polygonCanvas.pack(side = "left")
- 
+
+ movableShape = MovableShape(polygonCanvas, 'black', 'red', 4, [(32, 0), (0, 25), (13, 64), (64, 51), (64, 25)]) 
  buttonManager = ButtonManager(tk, NE)
- movableShape = MovableShape(polygonCanvas, 'black', 'red', 4, [(32, 0), (0, 25), (13, 64), (64, 51), (64, 25)])
 
  tk.mainloop() 
