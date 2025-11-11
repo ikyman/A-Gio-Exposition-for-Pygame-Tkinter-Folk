@@ -5,11 +5,6 @@ import copy
 from UIElements.front_end_button import FrontEndButton
 from UIElements.sub_correcting_surface import SubCorrectingSurface
 
-pygame.font.init()
-FONT_SIZE = 20
-UI_FONT = pygame.font.SysFont("Niagara Engraved" ,FONT_SIZE )
-FONT_COLOUR = "black"
-
 DEFAULT_CANVAS_WIDTH = 500
 DEFAULT_CANVAS_HEIGHT = 500
 DEFAULT_CANVAS_BACKGROUND_COLOR = 'cyan'
