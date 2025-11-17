@@ -56,6 +56,16 @@ It's a cool effect after winning solitaire. While playing solitaire, though, It'
 
 Event handling is furthermore much more explicit. Instead of calling bind to pass in a function, we simply feed the event to each interactable object.
 
+What this means in practical terms is you explicitly have to submit the "ask for user input" event object into the "Doing the Doings" function.
 
+In other words:
+
+
+<img width="652" height="312" alt="image" src="https://github.com/user-attachments/assets/6b93be42-f314-4640-94f1-b44b38ad8ba6" />
+
+
+
+
+# Credits
 
 For more Pygame Tutorials to scratch you Pygame Itch, I found Sentdex useful: https://www.youtube.com/playlist?list=PLQVvvaa0QuDdLkP8MrOXLe_rKuf6r80KO
