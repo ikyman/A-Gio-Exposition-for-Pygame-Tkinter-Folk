@@ -94,9 +94,13 @@ Just one small problem: where shall these heads by allocated? 1 5-headed Hydra i
 
 Hence, the ButtonManager class: It's the button-Hydra's body, so I don't go mad juggling around 5 1-headed body-less snakes.
 
+<img width="726" height="508" alt="image" src="https://github.com/user-attachments/assets/1bd4723a-f27b-431d-9c1a-009fca6c94c3" />
+
+
 # Frames and containerization
+Ideally, our buttons should be one on top of the other, and have no need to 
 
-
+The ButtonManager owns 2 things: the "Create a button" function, and the Frame in which newly created buttons are made. It's the button Zone.
 
 # Ouch! Quit Poking me!
 Let me tell you a tale from my youth. (This is utterly irrelavent to the implementation of the application)
