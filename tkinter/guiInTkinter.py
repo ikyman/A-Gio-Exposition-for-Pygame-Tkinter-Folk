@@ -16,6 +16,7 @@ class MovableShape():
 
  def moveUp(self, event):
   self.canvas.move(self.shape, 0, -self.speed) 
+  print("moved", self.canvas.coords(self.shape))
   
  def moveRight(self, event):
   self.canvas.move(self.shape, self.speed, 0) 
@@ -29,8 +30,8 @@ class MovableShape():
 
 class ButtonManager():
  def __init__(self, container, packAnchor):
-  self.buttonList = Frame(container)
-  self.buttonList.pack(anchor = packAnchor)
+  self.buttonFrame = Frame(container)
+  self.buttonFrame.pack(anchor = packAnchor)
   
   self.buttonCount = 0
   self.addButton()
