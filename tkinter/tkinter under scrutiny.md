@@ -62,10 +62,11 @@ First of all, we got to make the canvas the shape is on, and the shape itself. T
 We shall do so by instantiating a Canvas object, packing it, and drawing the shape. The first two tasks are done in the if name == "main" conditional, the latter is done via the shape's constructor.
 
 __Canvas__ : The name gives the game away, I say. Much like a real-life canvas, a tkinter canvas is needed if you ever need to draw anything. Polygons and circles are too chaotic to handle either packing or gridding.
+To instantiate a widget like a canvas, it need the container it is "in". This determines the widget's future location in relation to other widgets through pack()ing or grid()ing. Being a Canvas, you'ld likely also want to describe the height, width, and background colour of the canvas. These can be set using the arguments `height, width, and background`
 
 __Packing__ :  "Built-in the box" widgets like buttons (which we'll get to later) and the canvas need to be packed before use. This tells tkinter where each widget is placed in relation to existing and future widgets.
 You can fine-tune where exactly a newly-packed widget is placed via both the side and anchor properties. I, being a professional jiggled these settings around untill my widgets were in the right position.
-I recon that's not a particularly satisfying answer, and the Tkinter people agree! Hence, they created the grid() function. Like pack(), grid() places widgets on the screen. grid, being grid-based and objective, is easier to use than the Relatist pack(). More readong on grid() vs pack() can be found here: https://tkdocs.com/tutorial/concepts.html#geometry
+I recon that's not a particularly satisfying answer, and the Tkinter people agree! Hence, they created the grid() function. Like pack(), grid() places widgets on the screen. grid, being grid-based and objective, is easier to use than the Relatist pack(). More reading on grid() vs pack() can be found here: https://tkdocs.com/tutorial/concepts.html#geometry
 
 __Shape Drawing__ : Much like how a canvas is needed to draw items, it would be useless to have a canvas and be unable to draw anything on it. Canvases can draw many items, such as polygons, rectangles, text, and images. Each of these drawn objects can be refered to by it's ID. 
 In our case, we will be saving the polygon's id. When our shape is supposed to move, we can use canvas.move in conjunction with the polygon's ID to make the polygon move. Each direction has their own function.
@@ -77,6 +78,31 @@ https://github.com/user-attachments/assets/1b322bfa-a5cb-4a52-b565-1e327a38d9d7
 
 A picture is worth a thousand words, and the above video has 25 fps. I think enough has been said about bind_all.
 
+# I press the button!
+Buttons are widgets, much like canvas objects. As such, your new-found (or old-found) knowledge on pack()ing (or grid()-ing) should suffice to create and place a Button.
+The text written on the button and the function run when the button is pressed can be set via arguments `text` and `command`, respectively.
 
+# A Hydra Metaphor that gets increasengly strained over time.
+The first button, when clicked, creates another button, as does the second button, as does the third, and so on. All of these buttons are the same!
+When you really think about it, t'is just one button, with many heads:
+
+<img width="364" height="280" alt="image" src="https://github.com/user-attachments/assets/b06a6047-bf5a-4746-8799-8fb3b1bcff5b" />
+
+calling `Button` create a new button-creating button. It's a new head on the hydra. Great! Creating new heads is all we really need, given the specifications of the app.
+
+Just one small problem: where shall these heads by allocated? 1 5-headed Hydra is easier to keep track of than 5 1-headed snakes. 
+
+Hence, the ButtonManager class: It's the button-Hydra's body, so I don't go mad juggling around 5 1-headed body-less snakes.
+
+<img width="726" height="508" alt="image" src="https://github.com/user-attachments/assets/1bd4723a-f27b-431d-9c1a-009fca6c94c3" />
+
+
+# Frames and containerization
+Ideally, our buttons should be one on top of the other, and have no need to 
+
+The ButtonManager owns 2 things: the "Create a button" function, and the Frame in which newly created buttons are made. It's the button Zone.
+
+# Ouch! Quit Poking me!
+Let me tell you a tale from my youth. (This is utterly irrelavent to the implementation of the application)
 
 
