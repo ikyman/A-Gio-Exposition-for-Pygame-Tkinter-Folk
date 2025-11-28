@@ -60,12 +60,41 @@ What this means in practical terms is you explicitly have to submit the "ask for
 
 In other words:
 
+https://github.com/user-attachments/assets/79cd638b-2d2f-433e-b235-50a887a452c4
 
-<img width="652" height="312" alt="image" src="https://github.com/user-attachments/assets/6b93be42-f314-4640-94f1-b44b38ad8ba6" />
+Compare the above Vine with the Vine for event handling in Tkinter under scruitiny. 
 
+I want to Emphisize how, without passing in the event to an object, the user's actions will be ignored. The guts of the main loop are exposed. 
 
+For a concrete example, When I click on a button a click event gets added onto the Quenue. User input happened. This click event gets fed to the button (one of the coloured arrows). The button then compares it's own location with the location of the click. If the button deems itsself clicked, it triggeres the callback function. It does the doing.
 
+# DownDownDownDownRightRightRightDownDownDownDownDownDownDownDownRightRight
+The event.type for pressing a key is pygame.KEYDOWN . Now that we know that the event is a KEYDOWN event, we know that the event has the key property, from which we can determine which key was pressed.
 
-# Credits
+Problem is, KEYDOWN only triggers upon the initial press of a key. Your cat decided to sleep a your keyboard? ( https://www.instagram.com/reel/DJOmLn3yyi9/ ) That's one Keydown event. 
+
+Technically, KEYDOWN provides everything needed: I can technically move the shape. But to move it any distance? Either my finger or my keyboard will perish in the attempt.
+
+"Move the shape every time a Key is pressed from up to down" isn't up to snuff. What I really want is "Move the shape every time the a Key is pressed down"
+
+Luckily, there is a pygame function for that: I instead used pygame.key.get_pressed(). 
+
+Pygame has an internal list of keyboard keys at https://www.pygame.org/docs/ref/key.html . I pick a key from it. Let's say, hmmm, F4 (pygame.K_F4). 
+Do I have F4 Pressed? I can call pygame.key.get_pressed()[pygame.K_F4].
+If pygame.key.get_pressed()[pygame.K_F4] is True, then yes, I must have been pressing F4.
+If pygame.key.get_pressed()[pygame.K_F4] is False, then that means I wasn't pressing F4.
+
+For the purposes of moveing my shape, I check pygame.key.get_pressed()'s value not on F4, but on the Up, Right, Down and Left Arrow keys.
+If any of these are pressed, the program orders the shape to move in that particular direction.
+
+pygame.key.get_pressed, much like events, check for user input. Like with event handling, pygame.key.get_pressed is called and handled every repetition of the main loop. 
+
+# DownDownDownDownRightRightRightDownDownDownDownDownDownDownDownRightRight, but with Mario!
+On the difference between KEYDOWN and get_pressed(): Here's a video about some fellow who spent 12 hours on a single Mario 64 level: https://youtu.be/kpk2tdsPh0A?si=CByi3G4Unxi_VtIu&t=65 
+It's relavent, I promise. KEYDOWN is what would be used to detect the initial A-press. The above unorthodox Mario playthrough takes great pains to avoid triggering a KEYDOWN event, substituting in its stead `get_pressed()[K_a]`
+
+I believe now almost everything has been explained about pygame.key.get_pressed(). One question still remains: Why was I pressing down F4 in the first place?
+
+# More Reading (or watching)
 
 For more Pygame Tutorials to scratch you Pygame Itch, I found Sentdex useful: https://www.youtube.com/playlist?list=PLQVvvaa0QuDdLkP8MrOXLe_rKuf6r80KO
