@@ -87,7 +87,7 @@ If pygame.key.get_pressed()[pygame.K_F4] is False, then that means I wasn't pres
 For the purposes of moveing my shape, I check pygame.key.get_pressed()'s value not on F4, but on the Up, Right, Down and Left Arrow keys.
 If any of these are pressed, the program orders the shape to move in that particular direction.
 
-pygame.key.get_pressed, much like events, check for user input. Like with event handling, pygame.key.get_pressed and it's handling has to be handled every looping of the main loop. 
+pygame.key.get_pressed, much like events, check for user input. Like with event handling, pygame.key.get_pressed is called and handled every repetition of the main loop. 
 
 # DownDownDownDownRightRightRightDownDownDownDownDownDownDownDownRightRight, but with Mario!
 On the difference between KEYDOWN and get_pressed(): Here's a video about some fellow who spent 12 hours on a single Mario 64 level: https://youtu.be/kpk2tdsPh0A?si=CByi3G4Unxi_VtIu&t=65 
