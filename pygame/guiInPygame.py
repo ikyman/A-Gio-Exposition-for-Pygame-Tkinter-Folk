@@ -26,9 +26,7 @@ class MovableShape:
         pygame.draw.polygon(self.canvas, self.fillColour, self.coords)
         pygame.draw.polygon(self.canvas, self.borderColour, self.coords, width = self.borderWeight)                
     
-    def handle_key_input(self):
-        pressed_keys = pygame.key.get_pressed()
-        
+    def handle_key_input(self, pressed_keys):     
         if pressed_keys[pygame.K_UP]:
             self.move2d( (0, -self.speed) )
         if pressed_keys[pygame.K_RIGHT]:
@@ -84,7 +82,8 @@ if __name__ == "__main__":
                 break
             buttonSideBar.handle_event(event)
         
-        moveableShape.handle_key_input()
+        pressed_keys = pygame.key.get_pressed()
+        moveableShape.handle_key_input(pressed_keys)
         
         all_display.blit(polygonCanvas, (0,0) )       
         polygonCanvas.fill("seagreen1")  
