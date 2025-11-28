@@ -64,8 +64,9 @@ https://github.com/user-attachments/assets/79cd638b-2d2f-433e-b235-50a887a452c4
 
 Compare the above Vine with the Vine for event handling in Tkinter under scruitiny. 
 
-The guts of the main loop are exposed. I, the programmer, have to pass in the events to the respective objects, and each object in turn decides how to handle said event.
-For example, When I click on a button, the button gets fed this click event. The button then compares it's location with the location of the click. If the button deems itsself clicked, it triggeres the callback function.
+I want to Emphisize how, without passing in the event to an object, the user's actions will be ignored. The guts of the main loop are exposed. 
+
+For a concrete example, When I click on a button a click event gets added onto the Quenue. User input happened. This click event gets fed to the button (one of the coloured arrows). The button then compares it's own location with the location of the click. If the button deems itsself clicked, it triggeres the callback function. It does the doing.
 
 # DownDownDownDownRightRightRightDownDownDownDownDownDownDownDownRightRight
 The event.type for pressing a key is pygame.KEYDOWN . Now that we know that the event is a KEYDOWN event, we know that the event has the key property, from which we can determine which key was pressed.
