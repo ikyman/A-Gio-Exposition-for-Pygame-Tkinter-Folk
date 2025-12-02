@@ -98,11 +98,42 @@ Hence, the ButtonManager class: It's the button-Hydra's body, so I don't go mad 
 
 
 # Frames and containerization
-Ideally, our buttons should be one on top of the other, and have no need to 
+Here's A Description of all of the Widgets currently used in the program.
 
-The ButtonManager owns 2 things: the "Create a button" function, and the Frame in which newly created buttons are made. It's the button Zone.
+<img width="748" height="613" alt="image" src="https://github.com/user-attachments/assets/00465edc-722d-43f5-8a15-d28b25782953" />
+
+Canvas and buttons you should already know by know. What of, though, Frame and TK?
+
+The Frame is a Widget that holds other widgets. Here, I'm using it as a container for all of my Button Widgets. It allows me to controll the direction the buttons without changing the initial positioning of said buttons.
+
+"All the buttons are in a box to the right. Within said box, they are stacked one on top of eachother" is a much more understandable sentance than
+"The canvas is already pack()ed to the left, so any buttons we pack to 'the top' would automatically be to the right. As we are pack()ing to the top, which is to the rightm the buttons end up stacked one on top of eachother."
+
+If we were using grid(), these two statements become:
+"The Canvas is at position (a,0). The Buttons are in a box at (b,0). Within said box, they are stacked one on top of eachother" and
+"The Canvas is at position (a,0). The Buttons take up (b, y). Unfortunently, the (b,0) row is quite tall from the Canvas on row (a,0). The first button now has excessive padding"
+
+<img width="601" height="736" alt="image" src="https://github.com/user-attachments/assets/45c2d036-d702-433a-8405-ff006974c05b" />
+
+If you use Frames, both are statments simpler. If you use grid() and containers, repositioning the buttons to be to the left of the canvas is also easier. Just set b < a. 
+
+The pack() equivalent is "We set our button container to the left. The canvas was already packed to the left, taking up the leftiest real-estate. Our choices are thus: A. Change the ordering in which they are packed, so the button frame takes up the leftiest real estate first, and is left on the left. B. Pack the canvas to the right, and hope that this fix doesn't upright anything else packed to the right. C. Add more Frames?"
+
+A. and B. involve oddball coupling (I'm moving the button list, why does this involve the canvas). Option C is better, and would work if persued with enough gusto, but question mark does not inspire confidence.
+
+In sum:
+The ButtonManager owns 2 things: the "Create a button" function, and the Frame which positions the newly-created buttons. It's the button Zone.
+
+Also, the goal of this tutorial is for readers of this tutorial to read as little code as possible. Do as I say, don't do as I do. My Waffling between pack() and grid(), in this light, is not a bug, but a feature.
+
+If you're dying to see the demo coded with grid(), you can switch the branch to the "tkinter using grid"
+
+# TK root is a special Frame
+Frames are widgets that contain other widgets, and govern the positioning of widgets.
+The TK root contains other widgets, and governs the positioning of said widgets.
 
 # Ouch! Quit Poking me!
-Let me tell you a tale from my youth. (This is utterly irrelavent to the implementation of the application)
+Everything relating to the Demo-app has been explained. It is done. 
+I need to get the word-count up, though, so let me pad out this tutorial by regaling an only-quasi-relavent tale from my youth.
 
 
