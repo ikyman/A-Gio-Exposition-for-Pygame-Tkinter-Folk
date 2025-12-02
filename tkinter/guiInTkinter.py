@@ -38,7 +38,7 @@ class ButtonManager():
   
  def addButton(self):
   self.buttonCount += 1;
-  newButton = Button(self.buttonList, text = "Button Number {}".format(self.buttonCount), command = self.addButton)
+  newButton = Button(self.buttonFrame, text = "Button Number {}".format(self.buttonCount), command = self.addButton)
   newButton.pack(side = 'top')
 
 if __name__ == "__main__":
