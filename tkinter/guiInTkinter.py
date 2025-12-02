@@ -29,9 +29,9 @@ class MovableShape():
 
 
 class ButtonManager():
- def __init__(self, container, packAnchor):
+ def __init__(self, container, packSide, packAnchor):
   self.buttonFrame = Frame(container)
-  self.buttonFrame.pack(anchor = packAnchor)
+  self.buttonFrame.pack(side = packSide, anchor = packAnchor)
   
   self.buttonCount = 0
   self.addButton()
@@ -53,6 +53,6 @@ if __name__ == "__main__":
  polygonCanvas.pack(side = "left")
 
  movableShape = MovableShape(polygonCanvas, 'black', 'red', 4, [(32, 0), (0, 25), (13, 64), (64, 51), (64, 25)]) 
- buttonManager = ButtonManager(tk, NE)
+ buttonManager = ButtonManager(tk, "right", NE)
 
  tk.mainloop() 
