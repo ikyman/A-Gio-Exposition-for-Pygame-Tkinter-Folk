@@ -12,38 +12,38 @@ Now that, that would be an embaressment! Far more of a ball-dropping than a Game
 Luckily, I used the programmer's favorite trick: The trusty ol' Copy-Paste! Voila! No AI "Vibe Coding" Required!
 
 I will not give a comprehensive review of what my UI elements are, for multiple reasons.
-1. This is really a Gio GUI tutorial, with only a stop-by on tkinter and Pygame
+1. This is really a Gio GUI tutorial, with only a stop-by on Tkinter and Pygame
 2. They should work, shouldn't they? 
-3. I aim for this tutorial to emphisize the codebase as little as possible. I started off with Tkinter for program conceptualization.
-   From said conceptualization, from the structure of the program, I aim to show the simularities of all three programs.
-   Think think with the mindset, see how the concepts fit together.
+3. I aim for this tutorial to deemphasize the codebase as much as possible. I started off with Tkinter for program conceptualization.
+   From said conceptualization, from the structure of the program, I aim to show the similarities of all three programs.
+   Think with the mindset, see how the concepts fit together.
 
 # It's still the same old loop
 <img width="748" height="487" alt="image" src="https://github.com/user-attachments/assets/dce0abb2-6f88-441c-be9a-bc3e99336bb4" />
 
-You might recognize this loop from "Tkinter under scruitiny". Indeed, one point I want to stress during this entire tutorial is how, irrespective of which library one choses, the blueprint of the GUI stays mostly the same. 
-I say "Mostly", because here's the ms paint drawing de jour for pygame:
+You might recognize this loop from "Tkinter under scrutiny". Indeed, one point I want to stress during this entire tutorial is how, irrespective of which library one choses, the blueprint of the GUI stays mostly the same. 
+I say "Mostly", because here's the MS Paint drawing de jour for Pygame:
 
 <img width="967" height="598" alt="image" src="https://github.com/user-attachments/assets/63ecdd7c-6e7d-42cc-b205-7035f6ddaaba" />
 
 Wow! What a Kaleidoscope! 
 
 # While mainloop is more concise, while main loop is more explicit
-I used a while loop for the pygame program's mainloop.
+I used a while loop for the Pygame program's mainloop.
 
-Why is this ordered in such a way? Now that the whileloop is explicit and not tucked away in the one mainloop() function, I can see in which order the "get user input and take action" and "draw the objects" are in, and I have "getting user input and take action" first.
+Why is this ordered in such a way? Now that the mainloop is explicit and not tucked away in the one mainloop() function, I can see in which order the "get user input and take action" and "draw the objects" are in, and I have "getting user input and take action" first.
 
 # Pygame: It's different: drawing is required 
 With Tkinter, I drew my shape before entering the loop. Upon moving my shape with move(), it moved. 
-Does it rerender? I don't know. Tkinter handled it, it worked, I didn't question it. 
+Does it re-render? I don't know. Tkinter handled it, it worked, I didn't question it. 
 
-With pygame, each object has to be drawn ever tick. My buttons and my Polygon objects both call their respective pygame.draw() functions every tick.
+With Pygame, each object has to be drawn ever tick. My buttons and my Polygon objects both call their respective pygame.draw() functions every tick.
 
-Now, do you remember how, with tkinter you had to pack() or grid() your Canvas, frame and Button widgets? The rest of the program could be ay-ok. You haven't pack()-ed though. The program doesn't know where to display the widget. With such freedom of choice, it takes the easiest path: doing diddly squat.
+Now, do you remember how, with Tkinter you had to pack() or grid() your Canvas, frame and Button widgets? The rest of the program could be ay-ok. You haven't pack()-ed though. The program doesn't know where to display the widget. With such freedom of choice, it takes the easiest path: doing diddly squat.
 
-Blit-ting and surfaces act in a similear manner. The buttons may be drawn upon a Surface, yes. The surface is floating in the ether, though. Where specifically is this surface? Who knows? Thus, nothing on the surface gets displayed.
+Blit-ting and surfaces act in a similar manner. The buttons may be drawn upon a Surface, yes. The surface is floating in the ether, though. Where specifically is this surface? Who knows? Thus, nothing on the surface gets displayed.
 surfaceGruff.blit(surfaceFairy, (10,10) ) is surfaceGruff telling surfaceFairy to quit it's namby-pamby imaginaryland prancing and get it's ass down to earth at coordinates (10, 10).
-Thus, you should view "blit" as an acronym, "Bro Locate Irl Thusplace". (That's not the real etymology. The real etymology is An homage to an esoteric and unpopular wikipedia page: https://en.wikipedia.org/wiki/Bit_blit)
+Thus, you should view "blit" as an acronym, "Bro Locate Irl Thusplace". (That's not the real etymology. The real etymology is An homage to an esoteric and unpopular Wikipedia page: https://en.wikipedia.org/wiki/Bit_blit)
 
 Nowhere does "Bro Locate Irl Thusplace" imply that the surface gets coloured.
 If you, say, forget to fill the canvas after moving a shape, you get the Solitaire victory effect:
@@ -54,7 +54,7 @@ It's a cool effect after winning solitaire. While playing solitaire, though, It'
 
 # Event handling by passing off
 
-Event handling is furthermore much more explicit. Instead of calling bind to pass in a function, we simply feed the event to each interactable object.
+Event handling is furthermore much more explicit. Instead of calling bind to pass in a function, we simply feed the event to each intractable object.
 
 What this means in practical terms is you explicitly have to submit the "ask for user input" event object into the "Doing the Doings" function.
 
@@ -62,11 +62,11 @@ In other words:
 
 https://github.com/user-attachments/assets/79cd638b-2d2f-433e-b235-50a887a452c4
 
-Compare the above Vine with the Vine for event handling in Tkinter under scruitiny. 
+Compare the above Vine with the Vine for event handling in Tkinter under scrutiny. 
 
-I want to Emphisize how, without passing in the event to an object, the user's actions will be ignored. The guts of the main loop are exposed. 
+I want to emphasize how, without passing in the event to an object, the user's actions will be ignored. The guts of the main loop are exposed. 
 
-For a concrete example, When I click on a button a click event gets added onto the Quenue. User input happened. This click event gets fed to the button (one of the coloured arrows). The button then compares it's own location with the location of the click. If the button deems itsself clicked, it triggeres the callback function. It does the doing.
+For a concrete example, When I click on a button a click event gets added onto the Quenue. User input happened. This click event gets fed to the button (one of the coloured arrows). The button then compares it's own location with the location of the click. If the button deems itself clicked, it triggers the callback function. It does the doing.
 
 # DownDownDownDownRightRightRightDownDownDownDownDownDownDownDownRightRight
 The event.type for pressing a key is pygame.KEYDOWN . Now that we know that the event is a KEYDOWN event, we know that the event has the key property, from which we can determine which key was pressed.
@@ -77,21 +77,21 @@ Technically, KEYDOWN provides everything needed: I can technically move the shap
 
 "Move the shape every time a Key is pressed from up to down" isn't up to snuff. What I really want is "Move the shape every time the a Key is pressed down"
 
-Luckily, there is a pygame function for that: I instead used pygame.key.get_pressed(). 
+Luckily, there is a Pygame function for that: I instead used pygame.key.get_pressed(). 
 
 Pygame has an internal list of keyboard keys at https://www.pygame.org/docs/ref/key.html . I pick a key from it. Let's say, hmmm, F4 (pygame.K_F4). 
 Do I have F4 Pressed? I can call pygame.key.get_pressed()[pygame.K_F4].
 If pygame.key.get_pressed()[pygame.K_F4] is True, then yes, I must have been pressing F4.
 If pygame.key.get_pressed()[pygame.K_F4] is False, then that means I wasn't pressing F4.
 
-For the purposes of moveing my shape, I check pygame.key.get_pressed()'s value not on F4, but on the Up, Right, Down and Left Arrow keys.
+For the purposes of moving my shape, I check pygame.key.get_pressed()'s value not on F4, but on the Up, Right, Down and Left Arrow keys.
 If any of these are pressed, the program orders the shape to move in that particular direction.
 
 pygame.key.get_pressed, much like events, check for user input. Like with event handling, pygame.key.get_pressed is called and handled every repetition of the main loop. 
 
 # DownDownDownDownRightRightRightDownDownDownDownDownDownDownDownRightRight, but with Mario!
 On the difference between KEYDOWN and get_pressed(): Here's a video about some fellow who spent 12 hours on a single Mario 64 level: https://youtu.be/kpk2tdsPh0A?si=CByi3G4Unxi_VtIu&t=65 
-It's relavent, I promise. KEYDOWN is what would be used to detect the initial A-press. The above unorthodox Mario playthrough takes great pains to avoid triggering a KEYDOWN event, substituting in its stead `get_pressed()[K_a]`
+It's relevant, I promise. KEYDOWN is what would be used to detect the initial A-press. The above unorthodox Mario playthrough takes great pains to avoid triggering a KEYDOWN event, substituting in its stead `get_pressed()[K_a]`
 
 I believe now almost everything has been explained about pygame.key.get_pressed(). One question still remains: Why was I pressing down F4 in the first place?
 
