@@ -114,6 +114,7 @@ import(
     "gioui.org/layout"
     "gioui.org/widget"
     "gioui.org/widget/material"
+    "gioui.org/io/key"
     /*
     "log"
 	"time"*/
@@ -173,6 +174,24 @@ func drawCanvas(gtx layout.Context) layout.Dimensions{
     canvasDims := new(layout.Spacer)
     canvasDims.Width = 500
     return canvasDims.Layout(gtx)
+}
+
+type  moveableShape struct {
+    coords []f32.Point
+}
+
+func NewMovableShape(coords ...f32.Point) moveableShape {
+    nms := new(moveableShape)
+    
+    return *nms
+}
+
+func (ms * moveableShape) drawMoveableShape(){
+
+}
+
+func (ms * moveableShape) handleKeyInput(pressedKey key.EditEvent){
+
 }
 
 func main(){
