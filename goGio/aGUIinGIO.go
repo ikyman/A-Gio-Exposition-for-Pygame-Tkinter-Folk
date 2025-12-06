@@ -100,19 +100,19 @@ if __name__ == "__main__":
     quit()
 */
 import(
-    _"fmt"
+    "fmt"
 
-	"gioui.org/app"
-    "image"
+    _"image"
     "image/color"
     "os"
+
+	"gioui.org/app"
     "gioui.org/f32"
     "gioui.org/op/clip"
     "gioui.org/op"
     "gioui.org/op/paint"
     "gioui.org/layout"
     "gioui.org/widget"
-
     "gioui.org/widget/material"
     /*
     "log"
@@ -134,28 +134,45 @@ type buttonManager struct{
     //buttonFrame
     buttonCount int
     buttonClickTracker widget.Clickable
-    buttonContext layout.Context 
     buttonTheme *material.Theme 
 
 }
 
-func newButtonManager(){
+func newButtonManager() buttonManager{
     bm := new(buttonManager);
     bm.buttonCount = 0
     bm.buttonTheme = material.NewTheme() 
+    return *bm
 }
 
-func (bm buttonManager) addButton(gtx layout.Context, index int){
+func (bm *buttonManager) addButton(){
+    bm.buttonCount = bm.buttonCount + 1;
+
     /*new_button_name := fmt.Sprintf("Button Number %d.", bm.buttonCount);
     new_button := material.Button(buttonTheme, &buttonTemplate, new_button_name);
     */
 }
 
-func (bm buttonManager) drawButtons(){
-    /*return layout.List().Layout(bm.buttonContext,
-        bm.addButton().Layout(bm.buttonContext),
-        bm.addButton().Layout(bm.buttonContext),
-    )*/
+func (bm *buttonManager) drawButtons(gtx layout.Context) layout.Dimensions{
+    var buttonFrame layout.Flex
+    buttonFrame.Axis = layout.Vertical
+
+    buttonFlexChilds := make([]layout.FlexChild,0)
+    th := material.NewTheme()
+    buttonSize := gtx
+    buttonSize.Constraints.Max.Y=20;
+
+    for i:=0; i<bm.buttonCount; i++ {
+        buttonFlexChilds = append(buttonFlexChilds, layout.Flexed (1, material.Button(th, &bm.buttonClickTracker, fmt.Sprintf("Button Nubmer %d" , i )).Layout ) )
+    }    
+   
+    return buttonFrame.Layout (gtx, buttonFlexChilds...)
+}
+
+func drawCanvas(gtx layout.Context) layout.Dimensions{
+    canvasDims := new(layout.Spacer)
+    canvasDims.Width = 500
+    return canvasDims.Layout(gtx)
 }
 
 func main(){
@@ -165,35 +182,22 @@ func main(){
 		ops := new(op.Ops)
         w.Option(app.Title("Polygon & Button Application"))
 
-        //bm := newButtonManager()
+        bm := newButtonManager()
+        bm.addButton();
 
 		for {
             evt := w.Event()
 
 			switch typ := evt.(type){
 			case app.FrameEvent:
-                split_screen_context := app.NewContext(ops, typ)
-                split_screen_context.Constraints= layout.Exact(image.Point{X: 40,Y: 40})
+                flexContext := app.NewContext( ops, typ)
 
-                layout.Flex{}.Layout(split_screen_context, 
-                    func(gtx layout.Context) layout.Dimensions{
-                        return layout.Dimensions{
-                            Size: image.Point{
-                                X: 400,
-                                Y: 400,
-                            },
-                        }
-                    },
-                    func(gtx layout.Context) layout.Dimensions{
-                        return layout.Dimensions{
-                            Size: image.Point{
-                                X: 200,
-                                Y: 400,
-                            },
-                        }
-                    },
-                )
-                //split_screen_context.Constaints.
+                //split_screen_context.Constraints= layout.Exact(image.Point{X: 40,Y: 40})
+
+                var axisLeftRight layout.Flex;
+
+                axisLeftRight.Layout(flexContext, layout.Flexed(  4, drawCanvas ), layout.Flexed(1, bm.drawButtons)  )
+
 
                 paint.Fill(ops, color.NRGBA{R: 252, G:0, B: 255})
                 //drawPolygon(ops, []f32.Point{f32.Point{X: 0, Y: 0}, f32.Point{X: 100, Y: 0}, f32.Point{X: 100, Y: 100}, f32.Point{X: 0, Y: 100}})
