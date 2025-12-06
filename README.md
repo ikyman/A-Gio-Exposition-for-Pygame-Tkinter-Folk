@@ -64,7 +64,7 @@ The Idea behind this tutorial is to take a Tkinter GUI, strip it down to it's th
 
 We then hop over to pygame, to view a different method of writing a GUI in python. Not only is the language the same, but the skeleton of the GUI application is similar.
 
-Finally, we head on over to GIO, the library that this tutorial is attempting to explain. We're now in unfamiliar territory, but with the power of friendship (AKA the other GUIs), GIO will be unable to srop your newfound POWERS! It shall be crushed into dust! 
+Finally, we head on over to GIO, the library that this tutorial is attempting to explain. We're now in unfamiliar territory, but with the power of friendship (AKA the other GUIs), GIO will be unable to stop your newfound POWERS! It shall be crushed into dust! 
 
 Each folder also contains the code for an implementation. I am trying my best to render reading these unnecessary: The idea is to explain things so fantastically that any reader would be enlightened to such an extent that his or her command of the learning material is absolute, solely from the tutorial explanations.
 
