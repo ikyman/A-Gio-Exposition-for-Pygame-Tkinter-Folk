@@ -1,7 +1,5 @@
 import pygame
 import copy
-
-
 from UIElements.front_end_button import FrontEndButton
 from UIElements.sub_correcting_surface import SubCorrectingSurface
 

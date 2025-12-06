@@ -100,6 +100,8 @@ if __name__ == "__main__":
     quit()
 */
 import(
+    _"fmt"
+
 	"gioui.org/app"
     "image"
     "image/color"
@@ -112,7 +114,7 @@ import(
     "gioui.org/widget"
 
     "gioui.org/widget/material"
-	/*"fmt"
+    /*
     "log"
 	"time"*/
 
@@ -128,6 +130,34 @@ func drawPolygon(operationManager *op.Ops, points []f32.Point) *clip.Path{
     return polygon
 }
 
+type buttonManager struct{
+    //buttonFrame
+    buttonCount int
+    buttonClickTracker widget.Clickable
+    buttonContext layout.Context 
+    buttonTheme *material.Theme 
+
+}
+
+func newButtonManager(){
+    bm := new(buttonManager);
+    bm.buttonCount = 0
+    bm.buttonTheme = material.NewTheme() 
+}
+
+func (bm buttonManager) addButton(gtx layout.Context, index int){
+    /*new_button_name := fmt.Sprintf("Button Number %d.", bm.buttonCount);
+    new_button := material.Button(buttonTheme, &buttonTemplate, new_button_name);
+    */
+}
+
+func (bm buttonManager) drawButtons(){
+    /*return layout.List().Layout(bm.buttonContext,
+        bm.addButton().Layout(bm.buttonContext),
+        bm.addButton().Layout(bm.buttonContext),
+    )*/
+}
+
 func main(){
     
 	go func(){
@@ -135,19 +165,17 @@ func main(){
 		ops := new(op.Ops)
         w.Option(app.Title("Polygon & Button Application"))
 
-        var buttonTemplate widget.Clickable
-        buttonTheme := material.NewTheme()
+        //bm := newButtonManager()
 
 		for {
             evt := w.Event()
 
-
-            
 			switch typ := evt.(type){
 			case app.FrameEvent:
                 split_screen_context := app.NewContext(ops, typ)
+                split_screen_context.Constraints= layout.Exact(image.Point{X: 40,Y: 40})
 
-                layout.Background{}.Layout(split_screen_context, 
+                layout.Flex{}.Layout(split_screen_context, 
                     func(gtx layout.Context) layout.Dimensions{
                         return layout.Dimensions{
                             Size: image.Point{
@@ -166,14 +194,13 @@ func main(){
                     },
                 )
                 //split_screen_context.Constaints.
-                button1 := material.Button(buttonTheme, &buttonTemplate, "I am a button")
 
-                button1.Layout(split_screen_context)
                 paint.Fill(ops, color.NRGBA{R: 252, G:0, B: 255})
+                //drawPolygon(ops, []f32.Point{f32.Point{X: 0, Y: 0}, f32.Point{X: 100, Y: 0}, f32.Point{X: 100, Y: 100}, f32.Point{X: 0, Y: 100}})
+
 
                 typ.Frame(ops);
 
-				//drawPolygon(ops, []f32.Point{f32.Point{X: 0, Y: 0}, f32.Point{X: 100, Y: 0}, f32.Point{X: 100, Y: 100}, f32.Point{X: 0, Y: 100}})
                 
 			case app.DestroyEvent:
 				os.Exit(0)
