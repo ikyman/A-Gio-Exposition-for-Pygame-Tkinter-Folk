@@ -182,17 +182,31 @@ type  moveableShape struct {
 
 func NewMovableShape(coords ...f32.Point) moveableShape {
     nms := new(moveableShape)
+
+    nms.coords = coords[:]
     
     return *nms
 }
 
-func (ms * moveableShape) drawMoveableShape(){
-
+func (ms * moveableShape) drawMoveableShape(operationList *op.Ops){
+    var polygonPath clip.Path
+    polygonPath.Begin(operationList)
+    for _, pt := range (ms.coords){
+        polygonPath.LineTo(pt)
+    }
+    
+    paint.FillShape(operationList, color.NRGBA{R: 0, G:100, B: 255, A:255}, clip.Outline{Path: polygonPath.End()}.Op())
 }
 
-func (ms * moveableShape) handleKeyInput(pressedKey key.EditEvent){
-
+func (ms * moveableShape) handleKeyInput(pressedKey key.Event){
+    /*moveX := 0
+    moveY := 0
+    switch keyType :=  pressedKey.Name:
+    case NameUpArrow
+    */
 }
+
+
 
 func main(){
     
@@ -204,21 +218,29 @@ func main(){
         bm := newButtonManager()
         bm.addButton();
 
+        ms := NewMovableShape(f32.Pt(32, 0), f32.Pt(0, 25), f32.Pt(13, 64), f32.Pt(64, 51), f32.Pt(64, 25))
+
 		for {
             evt := w.Event()
 
 			switch typ := evt.(type){
+                
+            case key.Event:
+                ms.handleKeyInput(typ)
+
 			case app.FrameEvent:
                 flexContext := app.NewContext( ops, typ)
 
                 //split_screen_context.Constraints= layout.Exact(image.Point{X: 40,Y: 40})
+                paint.Fill(ops, color.NRGBA{R: 100, G:255, B: 100, A:255})
+
+                ms.drawMoveableShape(ops)
 
                 var axisLeftRight layout.Flex;
 
                 axisLeftRight.Layout(flexContext, layout.Flexed(  4, drawCanvas ), layout.Flexed(1, bm.drawButtons)  )
 
 
-                paint.Fill(ops, color.NRGBA{R: 252, G:0, B: 255})
                 //drawPolygon(ops, []f32.Point{f32.Point{X: 0, Y: 0}, f32.Point{X: 100, Y: 0}, f32.Point{X: 100, Y: 100}, f32.Point{X: 0, Y: 100}})
 
 
