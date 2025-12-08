@@ -124,7 +124,9 @@ A. and B. involve oddball coupling (I'm moving the button list, why does this in
 In sum:
 The ButtonManager owns 2 things: the "Create a button" function, and the Frame which positions the newly-created buttons. It's the button Zone.
 
-Also, the goal of this tutorial is for readers of this tutorial to read as little code as possible. Do as I say, don't do as I do. My Waffling between pack() and grid(), in this light, is not a bug, but a feature.
+~~Also, the goal of this tutorial is for readers of this tutorial to read as little code as possible. Do as I say, don't do as I do. My Waffling between pack() and grid(), in this light, is not a bug, but a feature.~~
+
+No! That was not the reason why I used pack() instead of the superior Grid! Remember, this is technically a Golang GIO tutorial! And Gio's widget layout methodology is a lot more akin to pack() than grid(). 
 
 If you're dying to see the demo coded with grid(), you can switch the branch to the "tkinter using grid"
 
