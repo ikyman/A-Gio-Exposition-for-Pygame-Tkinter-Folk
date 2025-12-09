@@ -2,7 +2,6 @@ import pygame
 
 class SubCorrectingSurface:
     """
-    A "dom Mommy class" that handles coordinate corrections automatically.
     Takes a surface and manages all the correction math so UI elements don't have to worry about it.
     """
     

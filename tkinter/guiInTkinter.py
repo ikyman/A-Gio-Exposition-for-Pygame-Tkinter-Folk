@@ -16,7 +16,6 @@ class MovableShape():
 
  def moveUp(self, event):
   self.canvas.move(self.shape, 0, -self.speed) 
-  print("moved", self.canvas.coords(self.shape))
   
  def moveRight(self, event):
   self.canvas.move(self.shape, self.speed, 0) 
