@@ -138,4 +138,34 @@ The TK root contains other widgets, and governs the positioning of said widgets.
 Everything relating to the Demo-app has been explained. It is done. 
 I need to get the word-count up, though, so let me pad out this tutorial by regaling an only-quasi-relavent tale from my youth.
 
+Humour, being ammusment is an attribute I aspire to. And do you know what's funny?
 
+A Button, which upon being pressed, complains about said poking. 
+
+It's funny, because a button being pressed is the entire raisen-detre of being a button. A Button who objects to such a calling is an doomed enity, cursed by its coporeal form, destined to suffer for eternity. 
+
+A commentary of the ficelness and crulity of fate. Hahahahaha!
+
+Making such a touch-averse button should be fairly easy: there already is a built-in function for writing text to the terminal: print. 
+
+Simply plop print with the correct string as the button's command, and I was good to go, right?
+
+`OuchButton = Button(frame, text="Don't Click Me!", command=print("Ouch! Your pointer is sharp!"))`
+
+Imagine my surprise, then, when I ran the program. The only time any complaint was lodged was when I first ran the program. Subsequent prodding elicited no response. 
+
+Here's the mistake I made: the difference between print() and print. print() calls a function with whatever parameters it was called with. print() writes to the terminal, then the function terminates, returning a None-type.
+
+print, without parenthesis, is a variable refering to the _function itsself_. Thus, functions can be passed in as parameters as if they were any old variable. 
+
+Back to 
+
+`OuchButton = Button(frame, text="Don't Click Me!", command=print("Ouch! Your pointer is sharp!"))`
+
+What this actually does is set the button's command to the _value returned_ by the function print("Ouch! Your pointer is sharp!").
+When the button is being created, it runs this function once. This initial run writes the initial "Ouch! Your pointer is sharp!". 
+After verifying that, yes, the function that always returns `None` did, in fact, return `None`, the button constructor set the command to `None`
+
+How do we create the click-hating button? We need something akin to print("Ouch! Your pointer is sharp!"), a variable recognized _as a function_.
+
+We could solve this by creating a second function, one that calls NEEDS PICTURE
