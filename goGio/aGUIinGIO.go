@@ -115,11 +115,21 @@ import(
     "gioui.org/widget"
     "gioui.org/widget/material"
     "gioui.org/io/key"
-    /*
-    "log"
-	"time"*/
-
 )
+
+var (
+	buttonTheme  *material.Theme
+    
+)
+
+func init() {
+	// Initialize themes once at package load time
+	buttonTheme = material.NewTheme()
+	buttonTheme.Palette.ContrastBg = color.NRGBA{R: 200, G: 200, B: 0, A: 255};
+	buttonTheme.Palette.ContrastFg = color.NRGBA{R: 0, G: 0, B: 0, A: 255};
+    
+    buttonTheme.TextSize = 18;
+}
 
 func drawPolygon(operationManager *op.Ops, points []f32.Point) *clip.Path{
     polygon := new(clip.Path)
@@ -142,16 +152,12 @@ type buttonManager struct{
 func newButtonManager() buttonManager{
     bm := new(buttonManager);
     bm.buttonCount = 0
-    bm.buttonTheme = material.NewTheme() 
+    bm.buttonTheme = buttonTheme 
     return *bm
 }
 
 func (bm *buttonManager) addButton(){
     bm.buttonCount = bm.buttonCount + 1;
-
-    /*new_button_name := fmt.Sprintf("Button Number %d.", bm.buttonCount);
-    new_button := material.Button(buttonTheme, &buttonTemplate, new_button_name);
-    */
 }
 
 func (bm *buttonManager) drawButtons(gtx layout.Context) layout.Dimensions{
@@ -159,12 +165,11 @@ func (bm *buttonManager) drawButtons(gtx layout.Context) layout.Dimensions{
     buttonFrame.Axis = layout.Vertical
 
     buttonFlexChilds := make([]layout.FlexChild,0)
-    th := material.NewTheme()
     buttonSize := gtx
     buttonSize.Constraints.Max.Y=20;
 
     for i:=0; i<bm.buttonCount; i++ {
-        buttonFlexChilds = append(buttonFlexChilds, layout.Flexed (1, material.Button(th, &bm.buttonClickTracker, fmt.Sprintf("Button Nubmer %d" , i )).Layout ) )
+        buttonFlexChilds = append(buttonFlexChilds, layout.Flexed (1, material.Button(bm.buttonTheme, &bm.buttonClickTracker, fmt.Sprintf("Button Number %d" , i +1)).Layout ) )
     }    
    
     return buttonFrame.Layout (gtx, buttonFlexChilds...)
@@ -177,12 +182,16 @@ func drawCanvas(gtx layout.Context) layout.Dimensions{
 }
 
 type  moveableShape struct {
+    fillColour color.NRGBA
+    speed float32
     coords []f32.Point
 }
 
-func NewMovableShape(coords ...f32.Point) moveableShape {
+func NewMovableShape(colour color.NRGBA, speed float32, coords ...f32.Point) moveableShape {
     nms := new(moveableShape)
 
+    nms.fillColour = colour
+    nms.speed = speed
     nms.coords = coords[:]
     
     return *nms
@@ -195,15 +204,31 @@ func (ms * moveableShape) drawMoveableShape(operationList *op.Ops){
         polygonPath.LineTo(pt)
     }
     
-    paint.FillShape(operationList, color.NRGBA{R: 0, G:100, B: 255, A:255}, clip.Outline{Path: polygonPath.End()}.Op())
+    paint.FillShape(operationList, ms.fillColour, clip.Outline{Path: polygonPath.End()}.Op())
 }
 
 func (ms * moveableShape) handleKeyInput(pressedKey key.Event){
-    /*moveX := 0
-    moveY := 0
-    switch keyType :=  pressedKey.Name:
-    case NameUpArrow
-    */
+    var moveX float32 = 0 
+    var moveY float32 = 0
+    if pressedKey.Name == "NameUpArrow" || pressedKey.Name == "W"{
+        moveY -= ms.speed
+    }
+    if pressedKey.Name == "NameLeftArrow" || pressedKey.Name == "A"{
+        moveY -= ms.speed
+    }
+    if pressedKey.Name == "NameDownArrow" || pressedKey.Name == "S"{
+        moveY += ms.speed
+    }
+    if pressedKey.Name == "NameRightArrow" ||  pressedKey.Name == "D"{
+        moveX += ms.speed
+    }
+    newCoords := make([]f32.Point, len(ms.coords) ) 
+
+    for ix, pt := range (ms.coords){
+        newCoords[ix] = f32.Pt(pt.X + moveX, pt.X + moveY)
+    }
+
+    ms.coords = newCoords
 }
 
 
@@ -218,7 +243,7 @@ func main(){
         bm := newButtonManager()
         bm.addButton();
 
-        ms := NewMovableShape(f32.Pt(32, 0), f32.Pt(0, 25), f32.Pt(13, 64), f32.Pt(64, 51), f32.Pt(64, 25))
+        ms := NewMovableShape(color.NRGBA{R: 0, G:100, B: 255, A:255}, 5, f32.Pt(32, 0), f32.Pt(0, 25), f32.Pt(13, 64), f32.Pt(64, 51), f32.Pt(64, 25))
 
 		for {
             evt := w.Event()
@@ -240,13 +265,8 @@ func main(){
 
                 axisLeftRight.Layout(flexContext, layout.Flexed(  4, drawCanvas ), layout.Flexed(1, bm.drawButtons)  )
 
-
-                //drawPolygon(ops, []f32.Point{f32.Point{X: 0, Y: 0}, f32.Point{X: 100, Y: 0}, f32.Point{X: 100, Y: 100}, f32.Point{X: 0, Y: 100}})
-
-
                 typ.Frame(ops);
 
-                
 			case app.DestroyEvent:
 				os.Exit(0)
 			}
