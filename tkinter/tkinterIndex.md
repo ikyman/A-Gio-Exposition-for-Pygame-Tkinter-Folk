@@ -24,13 +24,12 @@ Canvas.create_polygon: Draw a polygon with specified points. Returns an identifi
 
 Canvas.move: One of the "Subsequent adjustments" Moves the item denoted by an identifier by a set number of pixels. Shares the documentation page with other "subsequent adjustments" at https://tkdocs.com/shipman/canvas-methods.html
 
-Frame
+Frame: A Tkinter frame is a container for storing widgets. Packing your widgets in designated frames is much cleaner than piling them all in the Tk container. https://tkdocs.com/pyref/frame.html
 
 # Non-Widgets
 
 Tk() Initializes Tk and returns an empty container for packing widgets into. https://tkdocs.com/pyref/tk.html
 
-tk.mainloop
+tk.mainloop: Tells Tkinter that the time has come! To start listening to and responding to Events. This function call blocks until the tk instance that called mainloop() is killed. I didn't find a documentation page for the mainloop function specifically. 
 
-tk.title
-
+tk.title: sets the bar-title of the application's window. Be default, this will be "tk". If empty, returns the current bar-title. https://tkdocs.com/shipman/toplevel.html
